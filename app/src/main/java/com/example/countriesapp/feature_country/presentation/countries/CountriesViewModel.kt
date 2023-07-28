@@ -5,18 +5,18 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countriesapp.di.RetrofitHelper
 import com.example.countriesapp.feature_country.domain.model.Country
-import com.example.countriesapp.feature_country.domain.repository.CountryApi
 import com.example.countriesapp.feature_country.domain.use_case.GetCountriesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.Exception
 
-class CountriesViewModel : ViewModel() {
-
-    private val repository: CountryApi = RetrofitHelper.instance
-    private val countriesUseCase = GetCountriesUseCase(repository)
+@HiltViewModel
+class CountriesViewModel @Inject constructor(
+    private val countriesUseCase : GetCountriesUseCase
+) : ViewModel() {
 
     private val _allCountries = mutableStateOf<List<Country>>(emptyList())
     private val allCountries: List<Country> get() = _allCountries.value
@@ -27,6 +27,7 @@ class CountriesViewModel : ViewModel() {
     private val _filterCountry = mutableStateOf<List<Country>>(emptyList())
     val filterCountry: List<Country> get() = _filterCountry.value
 
+    var isLoading = mutableStateOf(false)
     fun getCountries() {
         viewModelScope.launch(Dispatchers.IO) {
             try {

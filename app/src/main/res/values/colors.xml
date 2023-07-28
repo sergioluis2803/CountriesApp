@@ -8,6 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!--  color card default  -->
     <color name="country_item">#BCB8CE</color>
-    <color name="customTextFieldColor">#FF0000</color>
+    <color name="detail_country">#BCB8CE</color>
+
+    <!-- color continents-->
+    <color name="africa">#9A451C</color>
+    <color name="asia">#F6EE88</color>
+    <color name="europe">#B3494D</color>
+    <color name="oceania">#3596BC</color>
+    <color name="antarctica">#95e6ff</color>
+    <color name="north_america">#31805D</color>
+    <color name="south_america">#80B679</color>
+
 </resources>

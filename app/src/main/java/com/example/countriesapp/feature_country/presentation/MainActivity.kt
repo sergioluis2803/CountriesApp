@@ -1,4 +1,4 @@
-package com.example.countriesapp
+package com.example.countriesapp.feature_country.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,20 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.countriesapp.feature_country.presentation.countries.CountriesScreen
-import com.example.countriesapp.feature_country.presentation.countries.CountriesViewModel
 import com.example.countriesapp.feature_country.presentation.detail_country.DetailCountryScreen
-import com.example.countriesapp.feature_country.presentation.detail_country.DetailScreenViewModel
 import com.example.countriesapp.feature_country.presentation.util.Screen
 import com.example.countriesapp.ui.theme.CountriesAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private val countryViewModel = CountriesViewModel()
-    private val detailCountryViewModel = DetailScreenViewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,11 +35,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.CountriesScreen.route
                     ) {
                         composable(route = Screen.CountriesScreen.route) {
-                            CountriesScreen(
-                                viewModel = countryViewModel,
-                                navController = navController,
-                                detailCountryViewModel = detailCountryViewModel
-                            )
+                            CountriesScreen(navController = navController)
                         }
 
                         composable(
@@ -54,17 +46,13 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val nameCountry = it.arguments?.getString("nameCountry")
                             requireNotNull(nameCountry) { "No puede ser nulo" }
-                            DetailCountryScreen(
-                                navController = navController,
-                                detailCountryViewModel = detailCountryViewModel
-                            )
+                            DetailCountryScreen(navController = navController, nameCountry)
                         }
                     }
 
                 }
             }
         }
-        countryViewModel.getCountries()
     }
 
 }

@@ -2,7 +2,6 @@ package com.example.countriesapp.feature_country.domain.model
 
 data class Country(
     val independent: Boolean,
-    val status: String,
     val region: String,
     val subregion: String,
     val name: Name,

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.countriesapp.feature_country.domain.model.Country
@@ -17,7 +18,8 @@ fun FlagCountry(item: Country, modifier: Modifier = Modifier) {
         Image(
             painter = rememberImagePainter(data = item.flags.png),
             contentDescription = "flag_country",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.FillBounds
         )
     }
 
