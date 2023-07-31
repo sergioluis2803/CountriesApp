@@ -1,17 +1,18 @@
-package com.example.countriesapp.feature_country.domain.repository
+package com.example.countriesapp.feature_country.data.data_source
 
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 import com.example.countriesapp.feature_country.domain.model.DetailCountry
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface CountryApi {
+interface CountryApiService {
 
     @GET("all")
-    suspend fun getAllCountries(): List<Country>
+    suspend fun getAllCountries(): List<CountryModel>
 
     @GET("name/{detail}")
     suspend fun getCountryDescription(
         @Path("detail") detail: String
     ): DetailCountry
+
 }

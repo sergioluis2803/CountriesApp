@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun FlagCountry(item: Country, modifier: Modifier = Modifier) {
+fun FlagCountry(item: CountryModel, modifier: Modifier = Modifier) {
 
     Box(modifier = modifier) {
         Image(

@@ -1,4 +1,4 @@
-package com.example.countriesapp.feature_country.presentation.countries
+package com.example.countriesapp.feature_country.presentation.util
 
 import com.example.countriesapp.R
 

@@ -1,3 +1,3 @@
 package com.example.countriesapp.feature_country.domain.model
 
-class DetailCountry : ArrayList<Country>()
+class DetailCountry : ArrayList<CountryModel>()

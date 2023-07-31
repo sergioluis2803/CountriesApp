@@ -5,11 +5,10 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countriesapp.feature_country.domain.model.Country
 import com.example.countriesapp.feature_country.domain.model.Demonyms
 import com.example.countriesapp.feature_country.domain.model.Eng
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 import com.example.countriesapp.feature_country.domain.model.Flags
-import com.example.countriesapp.feature_country.domain.model.Maps
 import com.example.countriesapp.feature_country.domain.model.Name
 import com.example.countriesapp.feature_country.domain.use_case.GetCountryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,19 +22,18 @@ class DetailScreenViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _detailCountry = mutableStateOf(
-        Country(
+        CountryModel(
             independent = false,
             region = "",
             subregion = "",
             name = Name("", ""),
             capital = listOf(""),
             demonyms = Demonyms(Eng("", "")),
-            maps = Maps("", ""),
             continents = listOf(""),
             flags = Flags(""),
         )
     )
-    val detailCountry: Country get() = _detailCountry.value
+    val detailCountry: CountryModel get() = _detailCountry.value
 
     var isLoading = mutableStateOf(false)
 
@@ -51,7 +49,6 @@ class DetailScreenViewModel @Inject constructor(
                     name = Name(result[0].name.common, result[0].name.official),
                     capital = result[0].capital,
                     demonyms = Demonyms(Eng(result[0].demonyms.eng.f, result[0].demonyms.eng.m)),
-                    maps = Maps(result[0].maps.googleMaps, result[0].maps.openStreetMaps),
                     continents = result[0].continents,
                     flags = Flags(result[0].flags.png),
                 )

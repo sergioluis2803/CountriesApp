@@ -23,9 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.countriesapp.R
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 import com.example.countriesapp.feature_country.presentation.countries.components.CountryItem
 import com.example.countriesapp.feature_country.presentation.countries.components.ProgressScreen
+import com.example.countriesapp.feature_country.presentation.util.ColorCardCountry
 import com.example.countriesapp.feature_country.presentation.util.Screen
 import kotlinx.coroutines.delay
 
@@ -35,8 +36,6 @@ fun CountriesScreen(
     navController: NavHostController,
     countriesViewModel: CountriesViewModel = hiltViewModel()
 ) {
-    countriesViewModel.getCountries()
-
     val isLoading by remember {countriesViewModel.isLoading}
 
     LaunchedEffect(key1 = true){
@@ -89,7 +88,7 @@ fun CountriesScreen(
 
 }
 
-fun backgroundCardCountry(item: Country): Int {
+fun backgroundCardCountry(item: CountryModel): Int {
     var color: Int = R.color.country_item
     when (item.continents[0].lowercase()) {
         "oceania" -> color = ColorCardCountry.Oceania.colorCard

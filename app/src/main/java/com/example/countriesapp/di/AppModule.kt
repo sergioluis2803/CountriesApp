@@ -1,6 +1,6 @@
 package com.example.countriesapp.di
 
-import com.example.countriesapp.feature_country.domain.repository.CountryApi
+import com.example.countriesapp.feature_country.data.data_source.CountryApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,8 +24,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCountryApi(retrofit: Retrofit): CountryApi {
-        return retrofit.create(CountryApi::class.java)
+    fun provideCountryApiService(retrofit: Retrofit): CountryApiService {
+        return retrofit.create(CountryApiService::class.java)
     }
 
 }

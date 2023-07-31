@@ -16,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.countriesapp.R
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 
 @Composable
 fun CountryItem(
-    item: Country,
+    item: CountryModel,
     colorCard: Int,
     modifier: Modifier = Modifier
 ) {

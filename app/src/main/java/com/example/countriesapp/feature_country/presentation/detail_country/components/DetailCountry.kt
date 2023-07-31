@@ -14,12 +14,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 import com.example.countriesapp.feature_country.presentation.countries.components.FlagCountry
 import java.util.Locale
 
 @Composable
-fun DetailCountry(item: Country, modifier: Modifier = Modifier) {
+fun DetailCountry(item: CountryModel, modifier: Modifier = Modifier) {
 
     Column(modifier = modifier) {
         Text(

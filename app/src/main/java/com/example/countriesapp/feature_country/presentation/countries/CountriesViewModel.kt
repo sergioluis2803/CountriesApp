@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 import com.example.countriesapp.feature_country.domain.use_case.GetCountriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,17 +18,21 @@ class CountriesViewModel @Inject constructor(
     private val countriesUseCase : GetCountriesUseCase
 ) : ViewModel() {
 
-    private val _allCountries = mutableStateOf<List<Country>>(emptyList())
-    private val allCountries: List<Country> get() = _allCountries.value
+    private val _allCountries = mutableStateOf<List<CountryModel>>(emptyList())
+    private val allCountries: List<CountryModel> get() = _allCountries.value
 
     private val _searchQuery = mutableStateOf("")
     val searchQuery: State<String> = _searchQuery
 
-    private val _filterCountry = mutableStateOf<List<Country>>(emptyList())
-    val filterCountry: List<Country> get() = _filterCountry.value
+    private val _filterCountry = mutableStateOf<List<CountryModel>>(emptyList())
+    val filterCountry: List<CountryModel> get() = _filterCountry.value
 
     var isLoading = mutableStateOf(false)
-    fun getCountries() {
+
+    init {
+        getCountries()
+    }
+    private fun getCountries() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = countriesUseCase.invoke()

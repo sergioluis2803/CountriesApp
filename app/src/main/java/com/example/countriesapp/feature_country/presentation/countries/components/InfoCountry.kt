@@ -11,10 +11,10 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.countriesapp.feature_country.domain.model.Country
+import com.example.countriesapp.feature_country.domain.model.CountryModel
 
 @Composable
-fun InfoCountry(item: Country, modifier: Modifier = Modifier) {
+fun InfoCountry(item: CountryModel, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
 
         Text(
