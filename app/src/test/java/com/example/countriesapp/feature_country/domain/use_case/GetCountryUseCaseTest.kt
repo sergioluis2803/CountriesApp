@@ -1,7 +1,8 @@
 package com.example.countriesapp.feature_country.domain.use_case
 
-import com.example.countriesapp.feature_country.domain.model.DetailCountry
-import com.example.countriesapp.feature_country.domain.repository.CountryRepository
+import com.example.countriesapp.domain.use_case.GetCountryUseCase
+import com.example.countriesapp.data.model.DetailCountry
+import com.example.countriesapp.data.CountryRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

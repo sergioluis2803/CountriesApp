@@ -1,6 +1,6 @@
 package com.example.countriesapp.di
 
-import com.example.countriesapp.feature_country.data.data_source.CountryApiService
+import com.example.countriesapp.data.data_source.CountryApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

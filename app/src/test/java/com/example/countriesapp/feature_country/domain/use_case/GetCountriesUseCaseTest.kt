@@ -1,11 +1,12 @@
 package com.example.countriesapp.feature_country.domain.use_case
 
-import com.example.countriesapp.feature_country.domain.model.CountryModel
-import com.example.countriesapp.feature_country.domain.model.Demonyms
-import com.example.countriesapp.feature_country.domain.model.Eng
-import com.example.countriesapp.feature_country.domain.model.Flags
-import com.example.countriesapp.feature_country.domain.model.Name
-import com.example.countriesapp.feature_country.domain.repository.CountryRepository
+import com.example.countriesapp.domain.use_case.GetCountriesUseCase
+import com.example.countriesapp.data.model.CountryModel
+import com.example.countriesapp.data.model.Demonyms
+import com.example.countriesapp.data.model.Eng
+import com.example.countriesapp.data.model.Flags
+import com.example.countriesapp.data.model.Name
+import com.example.countriesapp.data.CountryRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify

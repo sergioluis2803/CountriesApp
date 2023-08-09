@@ -15,14 +15,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+val DarkColor = darkColorScheme(
+    primary = color_dark_primary,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+val LightColor = lightColorScheme(
+    primary = color_light_primary,
     secondary = PurpleGrey40,
     tertiary = Pink40
 
@@ -40,7 +40,6 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun CountriesAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -50,8 +49,8 @@ fun CountriesAppTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> DarkColor
+        else -> LightColor
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
