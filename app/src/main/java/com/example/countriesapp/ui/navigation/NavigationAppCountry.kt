@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.countriesapp.ui.countries.CountriesScreen
 import com.example.countriesapp.ui.detail_country.DetailCountryScreen
-import com.example.countriesapp.ui.util.Screen
+import com.example.countriesapp.util.Screen
 
 @Composable
 fun NavigationAppCountry() {

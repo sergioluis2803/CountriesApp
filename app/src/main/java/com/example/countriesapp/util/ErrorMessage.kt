@@ -1,4 +1,4 @@
-package com.example.countriesapp.ui.util
+package com.example.countriesapp.util
 
 data class ErrorMessage(
     val id: Long,

@@ -1,4 +1,4 @@
-package com.example.countriesapp.ui.util
+package com.example.countriesapp.util
 
 import com.example.countriesapp.R
 

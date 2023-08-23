@@ -1,7 +1,7 @@
 package com.example.countriesapp.ui.countries.util
 
 import com.example.countriesapp.data.model.CountryModel
-import com.example.countriesapp.ui.util.ErrorMessage
+import com.example.countriesapp.util.ErrorMessage
 
 sealed interface HomeUiState {
 

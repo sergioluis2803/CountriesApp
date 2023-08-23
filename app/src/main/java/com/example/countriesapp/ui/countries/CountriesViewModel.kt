@@ -35,7 +35,7 @@ class CountriesViewModel @Inject constructor(
         refreshCountries()
     }
 
-    private fun refreshCountries() {
+    fun refreshCountries() {
         viewModelState.update { it.copy(isLoading = true) }
 
         viewModelScope.launch(Dispatchers.IO) {

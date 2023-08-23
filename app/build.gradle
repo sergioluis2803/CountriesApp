@@ -13,7 +13,8 @@ android {
     defaultConfig {
         applicationId "com.example.countriesapp"
         minSdk 24
-        targetSdk 33
+        //noinspection EditedTargetSdkVersion
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -74,6 +75,11 @@ dependencies {
     //dagger hilt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+    //ok http
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    //pull refresh
+    implementation "androidx.compose.material:material:1.6.0-alpha04"
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "io.mockk:mockk:1.12.2"

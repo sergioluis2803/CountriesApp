@@ -1,6 +1,7 @@
 package com.example.countriesapp.ui.countries
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,16 +11,26 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,10 +41,11 @@ import com.example.countriesapp.data.model.CountryModel
 import com.example.countriesapp.ui.countries.components.CountryItem
 import com.example.countriesapp.ui.components.CustomStyleCircularProgress
 import com.example.countriesapp.ui.countries.util.HomeUiState
-import com.example.countriesapp.ui.util.ColorCardCountry
-import com.example.countriesapp.ui.util.Screen
+import com.example.countriesapp.util.ColorCardCountry
+import com.example.countriesapp.util.Screen
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun CountriesScreen(
     navController: NavHostController,
@@ -72,31 +84,55 @@ fun CountriesScreen(
 
             when (uiState) {
                 is HomeUiState.NoCountries -> {
-
-                }
-
-                is HomeUiState.HasCountries -> {
-                    LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items((uiState as HomeUiState.HasCountries).filterCountry) { country ->
-                            CountryItem(
-                                item = country,
-                                colorCard = backgroundCardCountry(country),
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(bottom = 10.dp)
-                                    .clickable {
-                                        navController.navigate(Screen.DetailCountryScreen.route + "/${country.name.common}")
-                                    }
-                            )
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        Button(
+                            onClick = { homeViewModel.refreshCountries() }
+                        ) {
+                            Text(text = stringResource(id = R.string.again_connection))
                         }
                     }
                 }
-            }
 
+                is HomeUiState.HasCountries -> {
+
+                    val refreshScope = rememberCoroutineScope()
+                    var refreshing by remember { mutableStateOf(false) }
+
+                    fun refresh() = refreshScope.launch {
+                        refreshing = true
+                        homeViewModel.refreshCountries()
+                        refreshing = false
+                    }
+
+                    val state = rememberPullRefreshState(refreshing, ::refresh)
+
+                    Box(modifier = Modifier.pullRefresh(state)) {
+
+                        LazyColumn(modifier = Modifier.fillMaxSize()) {
+                            items((uiState as HomeUiState.HasCountries).filterCountry) { country ->
+                                CountryItem(
+                                    item = country,
+                                    colorCard = backgroundCardCountry(country),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(bottom = 10.dp)
+                                        .clickable {
+                                            navController.navigate(Screen.DetailCountryScreen.route + "/${country.name.common}")
+                                        }
+                                )
+                            }
+                        }
+
+                        PullRefreshIndicator(refreshing, state, Modifier.align(Alignment.TopCenter))
+                    }
+
+                }
+            }
 
         }
     }
 }
+
 
 fun backgroundCardCountry(item: CountryModel): Int {
     var color: Int = R.color.country_item
