@@ -1,4 +1,5 @@
 🌍 CountriesAPP
+
 Aplicación móvil desarrollada en Android Studio con Kotlin y Jetpack Compose, que permite explorar un listado de países obtenidos desde la API pública REST Countries.
 
 La app cuenta con:
