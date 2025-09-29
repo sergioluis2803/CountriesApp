@@ -7,7 +7,7 @@ import retrofit2.http.Path
 
 interface CountryApiService {
 
-    @GET("all")
+    @GET("independent")
     suspend fun getAllCountries(): List<CountryModel>
 
     @GET("name/{detail}")
