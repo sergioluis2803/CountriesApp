@@ -28,26 +28,13 @@ Manejo de estado: ViewModel + MutableStateFlow
 
 Pruebas: JUnit (unitarias de casos de uso y viewmodels)
 
-📂 Estructura del proyecto
-
-CountriesAPP/
-
-│── app/
-
-│   ├── data/        # Repositorios, modelos DTO, consumo de API con Retrofit
-
-│   ├── di/          # Módulos de inyección con Dagger Hilt
-
-│   ├── domain/      # Modelos de negocio y casos de uso
-
-│   ├── ui/          # Pantallas y componentes con Jetpack Compose
-
-│   │   ├── list/    # Listado de países + buscador
-
-│   │   └── detail/  # Pantalla de detalles
-
-│   └── utils/       # Helpers y clases de soporte
-
-└── build.gradle
 
 📸 Capturas de pantalla
+
+<img width="380" height="836" alt="image" src="https://github.com/user-attachments/assets/e90bf98f-cef0-4ac8-83f7-7af4bef22f49" />
+
+<img width="385" height="839" alt="image" src="https://github.com/user-attachments/assets/6cd1b873-d3c7-43b0-8cc2-f9c981cdb6a0" />
+
+<img width="394" height="840" alt="image" src="https://github.com/user-attachments/assets/02f25100-41b5-45de-9f25-4914435f0d4c" />
+
+
